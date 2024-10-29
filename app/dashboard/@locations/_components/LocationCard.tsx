@@ -1,8 +1,8 @@
 import { API_URL, TOKEN_NAME } from "@/constants";
 import { Location } from "@/entities";
+import { authHeaders } from "@/helpers/authHeaders";
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
 import axios from "axios";
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 export default async function LocationCards({
@@ -11,10 +11,9 @@ export default async function LocationCards({
   store: string | string[] | undefined;
 }) {
   if (!store) return null;
-  const token = cookies().get(TOKEN_NAME)?.value;
   const { data } = await axios.get<Location>(`${API_URL}/locations/${store}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      ...authHeaders()
     },
   });
   return (
@@ -25,7 +24,7 @@ export default async function LocationCards({
       <Divider />
       <CardBody className="flex flex-col item-center w-full">
         <p className="w-full">
-          Manager: {" "}
+          Manager:{" "}
           <Link href={{ pathname: `/dashboard/managers` }}>
             <b>{data.manager?.managerFullName}</b>
           </Link>
