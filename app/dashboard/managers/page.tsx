@@ -1,5 +1,5 @@
-export const ManagersPage = () => {
-    return null
-}
+export const ManagersPage = async () => {
+  return null;
+};
 
 export default ManagersPage;
