@@ -5,7 +5,7 @@ import SelectLocation from "../../_components/SelectLocation";
 import { authHeaders } from "@/helpers/authHeaders";
 import { API_URL } from "@/constants";
 
-export default async function FormUpdateEmployee({
+export default async function FormUpdateUserEmployee({
   employee,
 }: {
   employee: Employee;

@@ -2,19 +2,18 @@
 import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 
-export default function registerManager(
-  managerId: string,
+export default function updateUser(
+  userId: string,
   formData: FormData
 ) {
   let data: any = {};
-  data.userEmail = formData.get("userEmail");
-  data.userPassword = formData.get("userPassword");
-  data.userRoles = "Manager";
+  data.userEmail = formData.get("userEmail") ? formData.get("userEmail") : undefined
+  data.userPassword = formData.get("userPassword") ? formData.get("userPassword") : undefined
 
   const response = fetch(
-    `${API_URL}/auth/register/${managerId}?role=manager`,
+    `${API_URL}/auth/${userId}`,
     {
-      method: "POST",
+      method: "PATCH",
       headers: {
         ...authHeaders(),
         "content-type": "application/json",
