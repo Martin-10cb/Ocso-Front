@@ -44,3 +44,13 @@ export interface Product {
   productCountSeal: number;
   provider: Provider;
 }
+
+
+export interface User {
+  userId: string;
+  userEmail: string;
+  userPassword: string;
+  userRoles: string[];
+  manager: Manager
+  employee: Employee
+}
